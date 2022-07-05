@@ -4,7 +4,7 @@ This code repo has been forked and altered slightly to allow it to be used to de
 
 To find out how to build this application and host it in Code Engine - a serverless environment on IBM Cloud - see the 'code-engine.txt' file. 
 
-
+To find out how to build this application using a DevOps toolchain, with Continuous Delivery - see the 'toolchain-to-code-engine.txt' file.
 
 The notes below are the original readme notes for this project. 
 

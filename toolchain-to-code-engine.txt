@@ -1,0 +1,50 @@
+Create a DevOps Toolchain to deploy to Code Engine
+
+In this lab, you will create a simple toolchain, that will take code from a GitHub repository and deploy it onto IBM Cloud using Code Engine. In addition, the toolchain will include Continuous Delivery, meaning that when you update the code, the application will automatically redeploy with the new version. 
+
+To use the lab, you will need an IBM Cloud account and a GitHub account.
+
+1. The first thing you need to do is fork the GitHub repository https://github.com/jamesbeltonIBM/devops-demo. In a browser, navigate to https://github.com/jamesbeltonIBM/devops-demo, then click ‘Fork’. You will be prompted to fork this project into your own GitHub account. By forking the code, you will be able to change it in your account and see the continuous delivery working. In the following steps, where you see the URL ‘https://github.com/jamesbeltonIBM/devops-demo', use your own repository URL.
+2. The second thing you need to do is create an instance of the Continuous Delivery service in your IBM Cloud account, if you don’t already have one. To provision one:
+    1. Log into IBM Cloud at cloud.ibm.com. Click ‘Catalog’ and search of ‘Continuous Delivery’. 
+    2. On the Provision screen, select a Location for the service. Make a note of the location, as you will need to ensure that you deploy services in this location later on. I  have chosen Frankfurt. 
+    3. Choose your plan. The Lite plan gives you free access to the service and provides enough resources for this lab. 
+    4. Provide a name for the service so that you can easily identify it. For example - Continuous-Delivery-devops-lab. 
+    5. Over on the right hand side, click the “I have read and agree…” box and click Create. 
+3. The third thing you need is a Secrets Manager instance. 
+    1. Click Catalog again from the IBM Cloud home screen and search for ‘Secrets Manager’
+    2. On the Provision screen, select a location for your Secrets manager. This can be any of the options but you will need to remember the location for later on. 
+    3. A Trial version of Secrets Manager will enable you to complete the lab
+    4. Give your Secrets Manager instance a name and you can leave the other settings at their default values.
+    5. Over on the right hand side, click the “I have read and agree…” box and click Create.
+4. Time to create the toolchain. Open the Navigation Menu on the left hand side (click the icon next to the ‘IBM Cloud’ text). Choose ‘DevOps > Toolchains’.
+5. IMPORTANT: Ensure that the Location field at the top of the screen shows the same location that you created your Continuous Delivery service in. 
+6. Click Create Toolchain
+7. Click on the ‘Develop a Code Engine application’ tile
+8. This opens a wizard that defines and creates the toolchain. Click Start.
+9. On the Toolchain Settings page, change the toolchain name to something more readable - for example, replace or remove the long string of numbers.
+10. Ensure that the ‘Select Region’ field matches the region in which you created your Continuous Delivery service. Then click ‘Continue’.
+11. On the Application settings page, change the ‘Source Provider’ to ‘GitHub’ and click on ‘Bring your own Application’.
+12. In the Repository URL field, enter the name of your GitHub repository, created in Step 1 above - e.g https://github.com/<<your-name>>/devops-demo. Note, you may have to authenticate yourself to the repo - just follow the simple on-screen instructions if so. 
+13. Click Continue
+14. You can leave the Secrets configuration page as is. Make sure Secrets Manager is selected and click Continue. 
+15. You now need to point at your Secrets Manager instance, which you created in Step 3. The first field is the name of the integration, which can be left as-is. Select the Region that you created your Secrets Manager instance in and if need be, the Resource Group you used too. You will then be able to select your Secrets Manager instance name from the drop-down.
+16. Click Continue
+17. Next, we need to configure the Deployment Target. Change the App Name to something that can be easily recognised, such as ‘code-engine-lab-<<your-intials>>’.
+18. Create a New IBM Cloud API Key. Click the blue ‘New +’ button. Click OK on the screen that appears. This will populate a key value (it will be obfuscated but you can see it, if you want to, by clicking the ‘eye’ icon.
+19. Next, choose a region into which your container will be stored for deployment, once built. Also, provide a namespace value. You can use any existing namespaces or create a new one by entering a new name. 
+20. Next, specify where you want your application to run Code Engine. Select a Region from the drop down and then enter a name for your project - for example ‘code-engine-toolchain’. Click Continue.
+21. Leave the Optional Tools screen as-is and then click Continue again.
+22. On the Summary page, you should see a green ‘Congratulations’ splash. Click Create Toolchain.
+23. You will now see your toolchain. 
+24. Click the ci-pipeline link - after a 30 seconds to a minute, it should start to run. This is the toolchain automatically picking up the code from the repository, building it and deploying it to Code Engine. This may take a few minutes to fully run but if you click the link, you can drill down and see the stages as they run, including logs.
+25. When the ‘deploy-application’ stage has run, click on it and then click the ‘Results’ tab. Copy the URL shown, and paste into a new browser tab. You will see the application up and running (there may be a short delay - this is just code engine scaling from zero (0) instances). 
+26. You can login and use the application (just enter anything you like as the username and password).
+27. Try out the Continuous Delivery features: 
+    1. In your GitHub repository, click the folder ‘public’ then click the file ‘login.html’.
+    2. Click the ‘edit’ icon (it looks like a pencil) and then locate line 22, which starts “ <div class="disclaimer">Example Heatlh is a simulated health…”. 
+    3. Carefully, insert ‘Hello!’ Into the line, so that it starts: “ <div class="disclaimer">Hello! Example Heatlh is a simulated health…”
+    4. Scroll down the screen - under ‘Commit Changes’, enter ‘added hello to login screen’ in the box that has the default value of ‘Update login.html’ in it. Then click the green ‘Commit Changes’ button. Switch back to your Toolchain screen in IBM Cloud.
+    5. 
+
+28. A new build will be automatically triggered and the ci-pipeline will run again. Wait a few minutes, then refresh / retry the application URL (it will not change). You should see the word ‘Hello!’.

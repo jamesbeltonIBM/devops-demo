@@ -1,0 +1,22 @@
+Simple Code Engine example.
+
+These instructions provide the steps needed to get a pre-built application up and running in IBM Cloud Code Engine. To follow the instructions, you will need an IBM Cloud account that has access to ‘free’ services. 
+
+1. Log into your IBM Cloud account at cloud.ibm.com
+2. Click the Navigation Menu icon at the top left of the screen (next to ‘IBM Cloud’). Click Code Engine > Overview. Alternatively, Click Catalog. Type ‘Code Engine’ into the search box and select Code Engine from the drop down. 
+3. Under the ‘Start with Source Code’ header, enter ‘https://github.com/jamesbeltonIBM/devops-demo' into the ‘paste your own source code URL’ field.
+4. Click ‘Start Creating’
+5. Ensure that ‘Application’ is checked
+6. Provide a name for your application. For example ‘code-engine-demo’
+7. Click the ‘Create Project’ button. 
+8. In the side menu that that opens, first select a location where your application will run, then add a name for your project, such as ‘code-engine-project’. This helps you identify it. You can leave other fields as-is. Click the blue Create button. The project will take a few seconds to create - ensure that the project name is then shown in the ‘Project’ drop down on the main screen.
+9. Ensure that the ‘source code URL’ field is populated with ‘https://github.com/jamesbeltonIBM/devops-demo'. Then click ’Specify build details’. This opens up a further panel on the right side of the screen. 
+10. Review the details in the Specify Build Details - Source - panel. There is no need to change these. Click Next.
+11. Review the details in the Specify Build Details - Strategy - panel. There is no need to change these. This specifies how the source code is built and what resources the application will have. Click Next.
+12. Review the details in the Specify Build Details - Output - panel. There is no need to change these. This specifies where the container build is stored. Click Done.
+13. You are returned to the main panel and you will see some ‘Image build details’.
+14. In the ‘Listening Port’ field, enter ’8080’.
+15. Ensure that ‘Public’ is selected under Endpoints. This will ensure that you can access the application once it is built and deployed.
+16. Click on the Runtime Settings. You do not need to change these settings but you can see some interesting options here. First, the number of instances determines the minimum number and maximum number of instances of the application that will run. You can see that if nobody is using the application, by default it will scale to zero (0). This saves you money as if nobody is using the app, no resources are used. We can play with this setting later. You can also determine how much CPU and Memory each instance of your application has and the concurrency targets that determine scaling (when to create new application instances and when to kill them off). 
+17. Click Create over on the right hand side. This will create and deploy the app from code and should take a minute or two.
+18. When the build has succeeded and other indicators show as ‘ready’ the build and deployment is done. You can now access the application. Simply click the ‘Test Application’ button in the top right corner and then click ‘Application URL’. There might be a slight delay…. This will be the application scaling from zero instances. You should then see an “Example Health’ login screen. To log in, you can use any name and password you like and just click ‘Sign In’. Have a play with the application - well done - you have deployed an application using Code Engine!

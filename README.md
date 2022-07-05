@@ -1,4 +1,12 @@
-# Patient Health Records - App Modernization with RedHat OpenShift
+# Patient Health Records - Code Engine and DevOps Demos
+
+This code repo has been forked and altered slightly to allow it to be used to demo Code Engine on IBM Cloud as well as creating DevOps Toolchains on IBM Cloud. 
+
+To find out how to build this application and host it in Code Engine - a serverless environment on IBM Cloud - see the 'code-engine.txt' file. 
+
+
+
+The notes below are the original readme notes for this project. 
 
 This project is a patient records user interface for a conceptual health records system. The UI is programmed with open standards JavaScript and modern, universal CSS, and HTML5 Canvas for layout.
 

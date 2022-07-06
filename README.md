@@ -1,4 +1,4 @@
-# Patient Health Records - Code Engine and DevOps Demos
+# Patient Health Records - Code Engine and DevOps Demo
 
 This code repo has been forked and altered slightly to allow it to be used to demo Code Engine on IBM Cloud as well as creating DevOps Toolchains on IBM Cloud. 
 
